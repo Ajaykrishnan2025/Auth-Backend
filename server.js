@@ -23,15 +23,28 @@ connectDB();
 // --------------------------
 // CORS FIX (LOCAL + VERCEL)
 // --------------------------
+const allowedOrigins = [
+  "http://localhost:5173", // local dev
+  "https://mearn-authe-frontend.vercel.app", // production frontend
+];
+
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://mearn-authe-frontend.vercel.app"],
+    origin: (origin, callback) => {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error("Not allowed by CORS"));
+      }
+    },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
   })
 );
 
+// --------------------------
 // Required middlewares
+// --------------------------
 app.use(express.json());
 app.use(cookieParser());
 
@@ -48,7 +61,7 @@ app.use("/api/test", testEmailRoutes);
 app.use("/api/chat", chatRouter);
 
 // --------------------------
-// START SERVER (LOCAL ONLY)
+// START SERVER
 // --------------------------
 const PORT = process.env.PORT || 4000;
 
