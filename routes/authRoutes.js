@@ -7,9 +7,8 @@ import {
   verifyAccount,
   isAuthenticated,
   sendResetOtp,
-  resetPassword,
+  resetPassword, // ✅ now exists in authController
 } from "../controllers/authController.js";
-import userAuth from "../middleware/userAuth.js";
 
 const router = express.Router();
 
@@ -19,14 +18,15 @@ router.post("/login", login);
 router.post("/logout", logout);
 
 // ✅ Email verification
-router.post("/send-verify-otp", sendVerifyOtp);  // 👈 missing route added here
+router.post("/send-verify-otp", sendVerifyOtp);
 router.post("/verify-account", verifyAccount);
 
 // ✅ Auth check
-router.get("/is-auth", userAuth, isAuthenticated);
+router.get("/is-auth", isAuthenticated);
 
 // ✅ Forgot password
 router.post("/send-reset-otp", sendResetOtp);
 router.post("/reset-password", resetPassword);
 
+// ✅ Default export (fix for server.js import)
 export default router;
