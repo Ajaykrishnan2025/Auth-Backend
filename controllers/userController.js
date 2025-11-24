@@ -1,4 +1,4 @@
-import userModel from "../models/userModel.js";
+import userModel from "../models/UserModel.js";
 
 // ✅ Controller to get user details after authentication
 export const getUserData = async (req, res) => {
