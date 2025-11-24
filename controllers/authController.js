@@ -56,7 +56,6 @@ export const login = async (req, res) => {
       return res.status(400).json({ success: false, message: "Invalid credentials" });
     }
 
-    // JWT
     const token = jwt.sign(
       { id: user._id },
       process.env.JWT_SECRET || "your_jwt_secret",
@@ -64,13 +63,13 @@ export const login = async (req, res) => {
     );
 
     // -------------------------
-    // Cookies for dev + production (Netlify frontend)
+    // Cookies for dev + production
     // -------------------------
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",   // ✅ secure for HTTPS
+      secure: process.env.NODE_ENV === "production",           // ✅ must be true on Render + HTTPS
       sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ cross-site cookie
-      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      maxAge: 7 * 24 * 60 * 60 * 1000,                         // 7 days
     });
 
     return res.json({
@@ -126,29 +125,20 @@ export const logout = async (req, res) => {
 };
 
 // -------------------------
-// SEND VERIFY OTP (stub)
+// Other stubs remain unchanged
 // -------------------------
 export const sendVerifyOtp = async (req, res) => {
   return res.json({ success: true, message: "OTP sent (stub)" });
 };
 
-// -------------------------
-// VERIFY ACCOUNT (stub)
-// -------------------------
 export const verifyAccount = async (req, res) => {
   return res.json({ success: true, message: "Account verified (stub)" });
 };
 
-// -------------------------
-// SEND RESET OTP (stub)
-// -------------------------
 export const sendResetOtp = async (req, res) => {
   return res.json({ success: true, message: "Reset OTP sent (stub)" });
 };
 
-// -------------------------
-// RESET PASSWORD
-// -------------------------
 export const resetPassword = async (req, res) => {
   try {
     const { email, newPassword } = req.body;

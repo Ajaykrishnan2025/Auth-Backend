@@ -25,8 +25,8 @@ connectDB();
 // CORS FIX (LOCAL + NETLIFY)
 // --------------------------
 const allowedOrigins = [
-  "http://localhost:5173",                  // local dev
-  "https://myaichatboot.netlify.app",      // Netlify frontend
+  "http://localhost:5173",
+  "https://myaichatboot.netlify.app", // ✅ no trailing slash
 ];
 
 app.use(
