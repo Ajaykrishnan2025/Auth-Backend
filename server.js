@@ -10,7 +10,8 @@ import authRouter from "./routes/authRoutes.js";
 import userRouter from "./routes/userRoutes.js";
 import testEmailRoutes from "./routes/testEmail.js";
 import chatRouter from "./routes/chatRoutes.js";
-import User from "../models/User.model.js";
+import User from "../models/userModel.js";
+
 
 
 dotenv.config();
