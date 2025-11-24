@@ -24,8 +24,8 @@ connectDB();
 // CORS FIX (LOCAL + VERCEL)
 // --------------------------
 const allowedOrigins = [
-  "http://localhost:5173", // local dev
-  "https://mearn-authe-frontend.vercel.app", // production frontend
+  "http://localhost:5173",
+  "https://mearn-authe-frontend.vercel.app",
 ];
 
 app.use(
@@ -39,10 +39,10 @@ app.use(
     },
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],  // 🟩 FIX
+    allowedHeaders: ["Content-Type", "Authorization"],
+    exposedHeaders: ["Set-Cookie"], // ✅ VERY IMPORTANT
   })
 );
-
 
 // --------------------------
 // Required middlewares
