@@ -38,10 +38,10 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true,                 // ✅ allow cookies
+    credentials: true, // ✅ allow cookies
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["Set-Cookie"],   // ✅ needed for cookies
+    exposedHeaders: ["Set-Cookie"], // ✅ important
   })
 );
 
@@ -67,7 +67,6 @@ app.use("/api/chat", chatRouter);
 // START SERVER
 // --------------------------
 const PORT = process.env.PORT || 4000;
-
 app.listen(PORT, () => {
   console.log(`🔥 Server running on port ${PORT}`);
 });
