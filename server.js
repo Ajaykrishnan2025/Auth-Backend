@@ -12,9 +12,6 @@ import testEmailRoutes from "./routes/testEmail.js";
 import chatRouter from "./routes/chatRoutes.js";
 import User from "./models/userModel.js";
 
-
-
-
 dotenv.config();
 
 const app = express();
@@ -25,11 +22,11 @@ const app = express();
 connectDB();
 
 // --------------------------
-// CORS FIX (LOCAL + VERCEL)
+// CORS FIX (LOCAL + NETLIFY)
 // --------------------------
 const allowedOrigins = [
-  "http://localhost:5173",
-  "https://mearn-authe-frontend.vercel.app",
+  "http://localhost:5173",                  // local dev
+  "https://myaichatboot.netlify.app",      // Netlify frontend
 ];
 
 app.use(
@@ -41,10 +38,10 @@ app.use(
         callback(new Error("Not allowed by CORS"));
       }
     },
-    credentials: true,
+    credentials: true,                 // ✅ allow cookies
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    exposedHeaders: ["Set-Cookie"], // ✅ VERY IMPORTANT
+    exposedHeaders: ["Set-Cookie"],   // ✅ needed for cookies
   })
 );
 

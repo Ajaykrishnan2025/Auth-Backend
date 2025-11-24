@@ -64,13 +64,13 @@ export const login = async (req, res) => {
     );
 
     // -------------------------
-    // Cookies for dev + production
+    // Cookies for dev + production (Netlify frontend)
     // -------------------------
     res.cookie("token", token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax",
-      maxAge: 7 * 24 * 60 * 60 * 1000,
+      secure: process.env.NODE_ENV === "production",   // ✅ secure for HTTPS
+      sameSite: process.env.NODE_ENV === "production" ? "None" : "Lax", // ✅ cross-site cookie
+      maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
     });
 
     return res.json({
@@ -126,21 +126,21 @@ export const logout = async (req, res) => {
 };
 
 // -------------------------
-// SEND VERIFY OTP
+// SEND VERIFY OTP (stub)
 // -------------------------
 export const sendVerifyOtp = async (req, res) => {
   return res.json({ success: true, message: "OTP sent (stub)" });
 };
 
 // -------------------------
-// VERIFY ACCOUNT
+// VERIFY ACCOUNT (stub)
 // -------------------------
 export const verifyAccount = async (req, res) => {
   return res.json({ success: true, message: "Account verified (stub)" });
 };
 
 // -------------------------
-// SEND RESET OTP
+// SEND RESET OTP (stub)
 // -------------------------
 export const sendResetOtp = async (req, res) => {
   return res.json({ success: true, message: "Reset OTP sent (stub)" });
